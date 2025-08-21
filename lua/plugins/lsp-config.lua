@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "ast_grep", "jdtls", "lua_ls", "gopls" },
+				ensure_installed = { "ast_grep", "jdtls", "lua_ls", "gopls", "pyright", "rust_analyzer" },
 			})
 		end,
 	},
@@ -39,6 +39,8 @@ return {
 			lspconfig.ast_grep.setup({})
 			lspconfig.jdtls.setup({})
 			lspconfig.lua_ls.setup({})
+            lspconfig.pyright.setup({})
+            lspconfig.rust_analyzer.setup({})
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
