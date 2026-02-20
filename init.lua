@@ -16,3 +16,21 @@ vim.opt.rtp:prepend(lazypath)
 
 require("vim-options")
 require("lazy").setup("plugins")
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "go",
+    callback = function()
+        vim.keymap.set("n", "<leader>ee", function()
+            -- Define the boilerplate lines
+            local lines = {
+                "if err != nil {",
+                "\tpanic(err)",
+                "}"
+            }
+            -- Get current cursor position
+            local r, c = unpack(vim.api.nvim_win_get_cursor(0))
+            -- Insert the lines into the buffer
+            vim.api.nvim_buf_set_lines(0, r, r, false, lines)
+        end, { buffer = true, desc = "Insert Go error panic" })
+    end
+})
